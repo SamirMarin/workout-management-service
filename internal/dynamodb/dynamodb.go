@@ -10,6 +10,7 @@ import (
 
 type Storable interface {
 	ToDynamoDbAttribute() map[string]*dynamodb.AttributeValue
+	ToDynamoDbItemInput() *dynamodb.GetItemInput
 }
 
 type Client struct {
@@ -54,4 +55,14 @@ func (c *Client) StoreItem(itemToStore Storable) error {
 	}
 
 	return nil
+}
+
+func (c *Client) GetItem(itemToSearch Storable) (error, *dynamodb.GetItemOutput) {
+	item := itemToSearch.ToDynamoDbItemInput()
+	itemOutput, err := c.Dynamodb.GetItem(item)
+	if err != nil {
+		return err, nil
+	}
+
+	return nil, itemOutput
 }

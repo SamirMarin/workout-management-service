@@ -4,15 +4,16 @@ import (
 	"github.com/SamirMarin/workout-management-service/internal/dynamodb"
 	"github.com/aws/aws-sdk-go/aws"
 	awsDynamoDb "github.com/aws/aws-sdk-go/service/dynamodb"
+	awsDynamoDbAttribute "github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"strconv"
 )
 
 type Workout struct {
 	Owner     string     `json:"owner"`
 	Name      string     `json:"name"`
-	Category  string     `json:"kind"`
+	Category  string     `json:"category"`
 	Equipment Equipment  `json:"equipment"`
-	Exercises []Exercise `json:"exercise"`
+	Exercises []Exercise `json:"exercises"`
 }
 
 type Equipment struct {
@@ -36,7 +37,13 @@ func (w *Workout) CreateWorkout() error {
 	}
 	return nil
 }
-func (c *Workout) GetWorkout() error {
+func (w *Workout) GetWorkout() error {
+	dynamoDbClient := dynamodb.NewClient("Workout")
+	err, getItemOutput := dynamoDbClient.GetItem(w)
+	if err != nil {
+		return err
+	}
+	err = awsDynamoDbAttribute.UnmarshalMap(getItemOutput.Item, w)
 	return nil
 }
 
@@ -82,6 +89,20 @@ func (w *Workout) ToDynamoDbAttribute() map[string]*awsDynamoDb.AttributeValue {
 		},
 		"Exercises": {
 			L: exerciseList,
+		},
+	}
+}
+
+func (w *Workout) ToDynamoDbItemInput() *awsDynamoDb.GetItemInput {
+	return &awsDynamoDb.GetItemInput{
+		TableName: aws.String("Workout"),
+		Key: map[string]*awsDynamoDb.AttributeValue{
+			"Owner": {
+				S: aws.String(w.Owner),
+			},
+			"Name": {
+				S: aws.String(w.Name),
+			},
 		},
 	}
 }
