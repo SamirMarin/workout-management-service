@@ -23,7 +23,7 @@ go build -o workout-management-service
 curl -X POST http://localhost:1323/create \
 -H "Content-Type: application/json" \
 -d '{
-  "owner": "Samir",
+  "owner": "samir@gmail.com",
   "name": "Run The Interval",
   "category": "running",
   "equipment": {
