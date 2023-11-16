@@ -28,9 +28,11 @@ type Exercise struct {
 	Time        int    `json:"time"`
 }
 
+var tableName = "Workout"
+
 // CreateWorkout creates a workout, save new workout to db
 func (w *Workout) CreateWorkout() error {
-	dynamoDbClient := dynamodb.NewClient("Workout")
+	dynamoDbClient := dynamodb.NewClient(tableName)
 	err := dynamoDbClient.StoreItem(w)
 	if err != nil {
 		return err
@@ -38,7 +40,7 @@ func (w *Workout) CreateWorkout() error {
 	return nil
 }
 func (w *Workout) GetWorkout() error {
-	dynamoDbClient := dynamodb.NewClient("Workout")
+	dynamoDbClient := dynamodb.NewClient(tableName)
 	err, getItemOutput := dynamoDbClient.GetItem(w)
 	if err != nil {
 		return err
@@ -95,7 +97,7 @@ func (w *Workout) ToDynamoDbAttribute() map[string]*awsDynamoDb.AttributeValue {
 
 func (w *Workout) ToDynamoDbItemInput() *awsDynamoDb.GetItemInput {
 	return &awsDynamoDb.GetItemInput{
-		TableName: aws.String("Workout"),
+		TableName: aws.String(tableName),
 		Key: map[string]*awsDynamoDb.AttributeValue{
 			"Owner": {
 				S: aws.String(w.Owner),
