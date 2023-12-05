@@ -24,7 +24,7 @@ type Equipment struct {
 type Exercise struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
-	Sets        int    `json:"reps"`
+	Sets        int    `json:"sets"`
 	Time        int    `json:"time"`
 }
 
@@ -81,10 +81,10 @@ func (w *Workout) ToDynamoDbAttribute() map[string]*awsDynamoDb.AttributeValue {
 		},
 		"Equipment": {
 			M: map[string]*awsDynamoDb.AttributeValue{
-				"name": {
+				"Name": {
 					S: aws.String(w.Equipment.Name),
 				},
-				"description": {
+				"Description": {
 					S: aws.String(w.Equipment.Description),
 				},
 			},

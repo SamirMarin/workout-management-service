@@ -89,3 +89,34 @@ func TestToDynamoDbItemInput(t *testing.T) {
 	}
 	assert.Equal(t, expectedDynamodbItemInput, dynamodbItemInput)
 }
+
+func TestCreateGetWorkout(t *testing.T) {
+	createWorkout := &Workout{
+		Owner:    "testUser",
+		Name:     "testWorkout",
+		Category: "testCategory",
+		Equipment: Equipment{
+			Name:        "testEquipment",
+			Description: "testDescription",
+		},
+		Exercises: []Exercise{
+			{
+				Name:        "testExercise",
+				Description: "testDescription",
+				Sets:        1,
+				Time:        1,
+			},
+		},
+	}
+	err := createWorkout.CreateWorkout()
+	assert.Nil(t, err)
+	getWorkout := &Workout{
+		Owner: "testUser",
+		Name:  "testWorkout",
+	}
+	err = getWorkout.GetWorkout()
+	assert.Nil(t, err)
+
+	//assert create and get workout are equal
+	assert.Equal(t, createWorkout, getWorkout)
+}
