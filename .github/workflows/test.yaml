@@ -18,7 +18,8 @@
         - name: set-up go
           uses: actions/setup-go@v5
           with:
-            go-version: '1.21'
+            go-version-file: go.mod
+            check-latest: true
         - name: docker compose
           run: |
             docker compose up -d
