@@ -14,4 +14,4 @@ aws dynamodb create-table \
         ReadCapacityUnits=5,WriteCapacityUnits=5 \
     --table-class STANDARD \
     --region us-west-2 \
-    --endpoint-url http://localhost:8000
+    --endpoint-url http://127.0.0.1:8000
