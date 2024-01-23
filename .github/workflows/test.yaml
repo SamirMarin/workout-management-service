@@ -23,7 +23,10 @@
           run: |
             mkdir -p ./data
             chmod 755 ./data
-            docker compose up -d
+            #docker compose up -d
+            docker run -p 8000:8000 amazon/dynamodb-local
+            echo "sleep"
+            sleep 20
             nc -vz localhost 8000
             aws --version
             docker logs dynamodb-local
