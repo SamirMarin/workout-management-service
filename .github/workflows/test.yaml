@@ -22,8 +22,8 @@
         - name: test
           run: |
             docker compose up -d
-            go test -v ./...
             ./scripts/dynamodb/create-table.sh
+            go test -v ./...
             docker compose down
           env:
             AWS_ACCESS_KEY_ID: test
