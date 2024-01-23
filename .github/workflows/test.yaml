@@ -23,15 +23,13 @@
           run: |
             mkdir -p ./data
             chmod 755 ./data
-            #docker compose up -d
-            docker run -p 8000:8000 amazon/dynamodb-local
+            docker compose up -d
             echo "sleep"
             sleep 20
             nc -vz localhost 8000
             aws --version
             docker logs dynamodb-local
-            #aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000
-            AWS_ACCESS_KEY_ID=X AWS_SECRET_ACCESS_KEY=X aws dynamodb list-tables --endpoint-url http://localhost:8000 --region us-west-2
+            aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000 --debug
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
