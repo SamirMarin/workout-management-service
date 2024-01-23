@@ -4,6 +4,7 @@ services:
     command: "-jar DynamoDBLocal.jar -dbPath ./data -cors *"
     image: "amazon/dynamodb-local:latest"
     container_name: dynamodb-local
+    network_mode: host
     networks:
       - dynamodb-local
     ports:
