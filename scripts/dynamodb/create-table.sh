@@ -1,7 +1,4 @@
 #!/bin/bash
-echo "here in script"
-aws dynamodb list-tables --region us-west-2 --endpoint-url http://127.0.0.1:8000
-
 # Command to create a DynamoDB table
 # Specifying ReadCapacityUnits and WriteCapacityUnits is required in local mode
 aws dynamodb create-table \

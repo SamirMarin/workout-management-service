@@ -19,20 +19,14 @@
           uses: actions/setup-go@v5
           with:
             go-version: '1.21'
-        - uses: unfor19/install-aws-cli-action@v1
-          with:
-            arch: amd64
         - name: test
           run: |
-            mkdir -p ./data
-            chmod 755 ./data
             docker compose up -d
-            echo "sleep"
-            sleep 20
             docker logs dynamodb-local
             nc -vz localhost 8000
             aws --version
             aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000 --debug
+            ./scripts/dynamodb/create-table.sh
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
