@@ -28,3 +28,4 @@
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
+            DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
