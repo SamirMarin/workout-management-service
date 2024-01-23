@@ -23,7 +23,6 @@
           run: |
             docker compose up -d
             sleep 45 
-            done
             ./scripts/dynamodb/create-table.sh
             go test -v ./...
             docker compose down
