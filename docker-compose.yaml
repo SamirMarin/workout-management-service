@@ -9,3 +9,6 @@ services:
     volumes:
       - "./data:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
+
+networks:
+  dynamodb-local: {}
