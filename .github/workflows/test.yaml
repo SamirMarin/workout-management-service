@@ -26,9 +26,9 @@
             docker compose up -d
             echo "sleep"
             sleep 20
+            docker logs dynamodb-local
             nc -vz localhost 8000
             aws --version
-            docker logs dynamodb-local
             aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000 --debug
           env:
             AWS_ACCESS_KEY_ID: test
