@@ -27,7 +27,8 @@
             nc -vz localhost 8000
             aws --version
             docker logs dynamodb-local
-            aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000
+            #aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000
+            AWS_ACCESS_KEY_ID=X AWS_SECRET_ACCESS_KEY=X aws dynamodb list-tables --endpoint-url http://localhost:8000 --region us-west-2
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
