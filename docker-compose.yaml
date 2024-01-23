@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -dbPath ./data -cors *"
+    command: "-jar DynamoDBLocal.jar -dbPath ./data -cors * -inMemory"
     image: "amazon/dynamodb-local:latest"
     container_name: dynamodb-local
     network_mode: host
