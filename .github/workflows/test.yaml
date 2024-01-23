@@ -17,16 +17,12 @@
           uses: actions/checkout@v4
         - name: set-up go
           uses: actions/setup-go@v5
-        - name: Run docker compose
-          run: docker compose up -d
-        - name: Run dynamodb set-up scripts
-          run: ./scripts/dynamodb/create-table.sh
-          env:
-            AWS_ACCESS_KEY_ID: test
-            AWS_SECRET_ACCESS_KEY: test
         - name: test
           run: |
+            docker compose up -d
             go test -v ./...
+            ./scripts/dynamodb/create-table.sh
+            docker compose down
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
