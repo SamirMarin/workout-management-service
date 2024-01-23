@@ -19,10 +19,13 @@
           uses: actions/setup-go@v5
           with:
             go-version: '1.21'
-        - name: test
+        - name: docker compose
           run: |
             docker compose up -d
-            sleep 20
+          env:
+            DOCKER_COMPOSE_COMMAND_OPTS: "-inMemory"
+        - name: test
+          run: |
             ./scripts/dynamodb/create-table.sh
             go test -v ./...
           env:
