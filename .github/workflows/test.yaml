@@ -21,17 +21,13 @@
             go-version: '1.21'
         - name: test
           run: |
-            sudo docker compose up -d
-            echo "sleep"
+            docker compose up -d
             sleep 20
-            docker logs dynamodb-local
-            nc -vz localhost 8000
-            aws --version
             ./scripts/dynamodb/create-table.sh
-            aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000
             go test -v ./...
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
             AWS_DEFAULT_REGION: 'us-west-2'
             DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
+            DOCKER_COMPOSE_COMMAND_OPTS: "-inMemory"
