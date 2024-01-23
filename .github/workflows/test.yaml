@@ -21,6 +21,8 @@
             go-version: '1.21'
         - name: test
           run: |
+            mkdir -p ./data
+            chmod 755 ./data
             docker compose up -d
             nc -vz localhost 8000
             aws --version
