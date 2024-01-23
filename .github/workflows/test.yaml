@@ -22,6 +22,8 @@
         - name: test
           run: |
             docker compose up -d
+            echo "sleep"
+            sleep 20
             docker logs dynamodb-local
             nc -vz localhost 8000
             aws --version
