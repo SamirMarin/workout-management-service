@@ -21,6 +21,12 @@
           run: docker compose up -d
         - name: Run dynamodb set-up scripts
           run: ./scripts/dynamodb/create-table.sh
+          env:
+            AWS_ACCESS_KEY_ID: test
+            AWS_SECRET_ACCESS_KEY: test
         - name: test
           run: |
             go test -v ./...
+          env:
+            AWS_ACCESS_KEY_ID: test
+            AWS_SECRET_ACCESS_KEY: test
