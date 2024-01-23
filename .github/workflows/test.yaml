@@ -29,6 +29,7 @@
             aws --version
             aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000 --debug
             ./scripts/dynamodb/create-table.sh
+            go test -v ./...
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
