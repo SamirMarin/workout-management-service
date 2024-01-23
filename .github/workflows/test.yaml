@@ -22,10 +22,7 @@
         - name: test
           run: |
             docker compose up -d
-            until curl --output /dev/null --silent --fail http://127.0.0.1:8000; do
-              echo 'Waiting for DynamoDB Local...'
-              sleep 20
-              curl -v http://127.0.0.1:8000
+            sleep 45 
             done
             ./scripts/dynamodb/create-table.sh
             go test -v ./...
