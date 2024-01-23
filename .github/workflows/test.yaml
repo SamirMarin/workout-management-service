@@ -22,8 +22,21 @@
         - name: test
           run: |
             docker compose up -d
-            sleep 45 
-            ./scripts/dynamodb/create-table.sh
+            echo "sleep"
+            sleep 20 
+            aws dynamodb create-table \
+              --table-name Workout \
+              --attribute-definitions \
+              AttributeName=Owner,AttributeType=S \
+              AttributeName=Name,AttributeType=S \
+              --key-schema \
+              AttributeName=Owner,KeyType=HASH \
+              AttributeName=Name,KeyType=RANGE \
+              --provisioned-throughput \
+              ReadCapacityUnits=5,WriteCapacityUnits=5 \
+              --table-class STANDARD \
+              --region us-west-2 \
+              --endpoint-url http://127.0.0.1:8000
             go test -v ./...
             docker compose down
           env:
