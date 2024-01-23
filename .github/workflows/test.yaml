@@ -23,6 +23,7 @@
           run: |
             docker compose up -d
             nc -vz localhost 8000
+            aws --version
             aws dynamodb list-tables --region us-west-2 --endpoint-url http://127.0.0.1:8000
           env:
             AWS_ACCESS_KEY_ID: test
