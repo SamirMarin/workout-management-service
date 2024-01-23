@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "here in script"
 
 # Command to create a DynamoDB table
 # Specifying ReadCapacityUnits and WriteCapacityUnits is required in local mode

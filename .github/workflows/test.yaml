@@ -29,4 +29,5 @@
           env:
             AWS_ACCESS_KEY_ID: test
             AWS_SECRET_ACCESS_KEY: test
+            AWS_DEFAULT_REGION: 'us-west-2'
             DYNAMODB_LOCAL_ENDPOINT: "http://127.0.0.1:8000"
