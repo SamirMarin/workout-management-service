@@ -27,8 +27,8 @@
             docker logs dynamodb-local
             nc -vz localhost 8000
             aws --version
-            aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000 --debug
             ./scripts/dynamodb/create-table.sh
+            aws dynamodb list-tables --region us-west-2 --endpoint-url http://localhost:8000
             go test -v ./...
           env:
             AWS_ACCESS_KEY_ID: test
