@@ -34,4 +34,3 @@
             AWS_SECRET_ACCESS_KEY: test
             AWS_DEFAULT_REGION: 'us-west-2'
             DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
-            DOCKER_COMPOSE_COMMAND_OPTS: "-inMemory"

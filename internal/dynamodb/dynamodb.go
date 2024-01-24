@@ -1,7 +1,6 @@
 package dynamodb
 
 import (
-	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -26,7 +25,6 @@ func NewClient(tableName string) *Client {
 	// Optional: Override with local endpoint if an environment variable is set
 	var svc *dynamodb.DynamoDB
 	if localEndpoint := os.Getenv("DYNAMODB_LOCAL_ENDPOINT"); localEndpoint != "" {
-		fmt.Println("in local")
 		svc = dynamodb.New(sess, &aws.Config{
 			Endpoint: aws.String(localEndpoint),
 			Region:   aws.String("us-west-2"),
