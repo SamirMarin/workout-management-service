@@ -23,11 +23,6 @@
         - name: docker compose
           run: |
             docker compose up -d
-            echo "Waiting for DynamoDB Local to be ready..."
-            until $(curl --output /dev/null --silent --head --fail http://localhost:8000); do
-                printf 'waiting'
-                sleep 2
-            done
           env:
             DOCKER_COMPOSE_COMMAND_OPTS: "-inMemory"
         - name: test
@@ -41,6 +36,7 @@
             DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
 
     build-and-push:
+      needs: [test]
       runs-on: ubuntu-latest
       steps:
         - name: checkout
