@@ -24,7 +24,8 @@
           run: |
             docker compose up -d
             echo "Waiting for DynamoDB Local to be ready..."
-            until curl --output /dev/null --silent --fail http://localhost:8000 || echo "DynamoDB Local not ready yet..."; do
+            until curl --output /dev/null --silent --head --fail http://localhost:8000; do
+                echo "DynamoDB Local not ready yet..."
                 sleep 5
             done
           env:
