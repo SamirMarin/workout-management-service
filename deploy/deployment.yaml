@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workout-management-service
+  labels:
+    app: workout-management-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+    app: workout-management-service
+  template:
+    metadata:
+      labels:
+        app: workout-management-service
+    spec:
+      containers:
+        - name: workout-management-service
+          image: ghcr.io/SamirMarin/workout-management-service:66e2fbfdd5c7a70ed0df007b9f0e721f3f0c66c8
+          ports:
+            - containerPort: 1323
