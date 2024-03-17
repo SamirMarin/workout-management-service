@@ -83,4 +83,4 @@
             targetBranch: main
             createPR: ${{ github.event_name != 'pull_request' }}
             branch: 'update-image-version'
-            message: 'Update Image Version to ${{ github.sha }}'
+            message: 'Update Image Version to: ${{ github.sha }}'
