@@ -1,4 +1,4 @@
-  name: test build and push
+  name: test build deploy
 
   on:
     push:
@@ -35,7 +35,7 @@
             AWS_DEFAULT_REGION: 'us-west-2'
             DYNAMODB_LOCAL_ENDPOINT: "http://localhost:8000"
 
-    build-and-push:
+    build:
       needs: [test]
       runs-on: ubuntu-latest
       steps:
@@ -68,7 +68,7 @@
             labels: ${{ steps.meta.outputs.labels }}
 
     deploy:
-      needs: [build-and-push]
+      needs: [build]
       runs-on: ubuntu-latest
       steps:
         - name: checkout
@@ -84,4 +84,3 @@
             createPR: ${{ github.event_name != 'pull_request' }}
             branch: 'update-image-version'
             message: 'Update Image Version to ${{ github.sha }}'
-
