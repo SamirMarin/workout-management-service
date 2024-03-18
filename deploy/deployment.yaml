@@ -8,7 +8,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-    app: workout-management-service
+      app: workout-management-service
   template:
     metadata:
       labels:
