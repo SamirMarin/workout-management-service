@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workout-management-service
+  name: ghcr.io/SamirMarin/workout-management-service:d904cb2175bff7723b4376d647ba9ef7095391d8
   labels:
     app: workout-management-service
 spec:
   replicas: 3
   selector:
     matchLabels:
-    app: workout-management-service
+      app: workout-management-service
   template:
     metadata:
       labels:
