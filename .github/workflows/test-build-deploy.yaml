@@ -79,12 +79,12 @@
           uses: fjogeleit/yaml-update-action@v0.14.0
           with:
             valueFile: 'deploy/deployment.yaml'
-            propertyPath: 'metadata.name' #'spec.template.spec.containers[0].image'
+            propertyPath: 'spec.template.spec.containers[0].image'
             value: ghcr.io/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:${{ github.sha }}
-            commitChange: true #${{ github.event_name != 'pull_request' }}
-            targetBranch: testing-deploy #main
+            commitChange: ${{ github.event_name != 'pull_request' }}
+            targetBranch: main
             masterBranchName: main
-            createPR: true #${{ github.event_name != 'pull_request' }}
+            createPR: ${{ github.event_name != 'pull_request' }}
             branch: 'deploy'
             token: ${{ secrets.GITHUB_TOKEN }}
             message: 'Update Image Version to: ${{ github.sha }}'
