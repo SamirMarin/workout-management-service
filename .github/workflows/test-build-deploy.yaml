@@ -68,7 +68,7 @@
     #        labels: ${{ steps.meta.outputs.labels }}
 
     deploy:
-      needs: [build]
+      #needs: [build]
       runs-on: ubuntu-latest
       steps:
         - name: checkout
