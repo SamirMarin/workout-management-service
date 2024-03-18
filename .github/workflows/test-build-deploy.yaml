@@ -81,7 +81,7 @@
             valueFile: 'deploy/deployment.yaml'
             propertyPath: 'metadata.name' #'spec.template.spec.containers[0].image'
             value: ghcr.io/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:${{ github.sha }}
-            commitChange: true ${{ github.event_name != 'pull_request' }}
+            commitChange: true #${{ github.event_name != 'pull_request' }}
             targetBranch: testing-deploy #main
             createPR: true #${{ github.event_name != 'pull_request' }}
             branch: 'testing-deploy-2'
