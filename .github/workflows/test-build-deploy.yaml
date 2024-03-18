@@ -81,6 +81,8 @@
             value: ghcr.io/${{ github.event.repository.owner.login }}/${{ github.event.repository.name }}:${{ github.sha }}
             commitChange: ${{ github.event_name != 'pull_request' }}
             targetBranch: main
+            masterBranchName: main
             createPR: ${{ github.event_name != 'pull_request' }}
-            branch: 'update-image-version'
+            branch: 'deploy'
+            token: ${{ secrets.GITHUB_TOKEN }}
             message: 'Update Image Version to: ${{ github.sha }}'
