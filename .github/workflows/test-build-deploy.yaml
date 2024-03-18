@@ -83,4 +83,5 @@
             targetBranch: testing-deploy #main
             createPR: true #${{ github.event_name != 'pull_request' }}
             branch: 'update-image-version'
+            token: ${{ secrets.GITHUB_TOKEN }}
             message: 'Update Image Version to: ${{ github.sha }}'
